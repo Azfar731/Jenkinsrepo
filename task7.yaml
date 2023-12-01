@@ -1,0 +1,27 @@
+---
+- hosts: client_group
+  become: yes
+  tasks:
+    - name: Install samba
+      yum:
+        name:
+          - samba
+          - samba-client
+        state: latest
+
+    - name: Deploy custom samba config
+      copy:
+        src: smb.conf
+        dest: /etc/samba/smb.conf
+        owner: ahalee
+        group: ahalee
+        mode: '0644'
+
+    - name: Ensure the samba service is running
+      service:
+        name: smb
+        state: started
+        enabled: yes
+
+
+
