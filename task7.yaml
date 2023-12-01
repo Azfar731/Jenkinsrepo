@@ -21,7 +21,7 @@
       service:
         name: smb
         state: started
-        enabled: yes
+        enabled: no
 
 
 
